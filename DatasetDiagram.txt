@@ -1,0 +1,41 @@
+erDiagram
+  PARTICIPANT_DATA ||--o{ TASK_DATA : "related to"
+  TASK_DATA ||--o{ KIN_EMG_DATA : "specific to"
+  KIN_EMG_DATA ||--o{ EMG : "contains"
+  KIN_EMG_DATA ||--o{ ANGLES : "contains"
+  PARTICIPANT_DATA ||--o{ PRODUCT_DATA : "interacts with"
+  PARTICIPANT_DATA {
+      string participantId PK
+      string gender
+      int age
+      float height
+      float handLength
+      float forearmLength
+      bool bothExperiments
+  }
+  TASK_DATA {
+      string taskId PK
+      datetime eventTime
+      string taskDetails
+  }
+  PRODUCT_DATA {
+      string productId PK
+      float weight
+      float span1
+      float span2
+      int shapeSpan1
+      int shapeSpan2
+  }
+  KIN_EMG_DATA {
+      string kinEmgId PK
+      string participantId FK
+      string taskId FK
+  }
+  EMG {
+      string emgId PK
+      string data
+  }
+  ANGLES {
+      string angleId PK
+      string data
+  }
